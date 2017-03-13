@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             if (networkUp()) {
                 new StockChecker().execute(symbol);
             } else {
-                String message = getString(R.string.toast_stock_added_no_connectivity, symbol);
+                String message = getString(R.string.toast_stock_added_no_connectivity);
 
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
@@ -169,8 +169,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (PrefUtils.getDisplayMode(this)
                 .equals(getString(R.string.pref_display_mode_absolute_key))) {
             item.setIcon(R.drawable.ic_percentage);
+            item.setTitle(getString(R.string.content_desc_change_unit_percent));
         } else {
             item.setIcon(R.drawable.ic_dollar);
+            item.setTitle(getString(R.string.content_desc_change_unit_dollar));
         }
     }
 
@@ -178,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_activity_settings, menu);
         MenuItem item = menu.findItem(R.id.action_change_units);
+        item.setTitle(getString(R.string.content_desc_change_unit_default));
         setDisplayModeMenuItemIcon(item);
         return true;
     }
