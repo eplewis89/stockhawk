@@ -38,26 +38,34 @@
             android:name=".sync.QuoteIntentService"
             android:exported="false" />
 
-        <provider
-            android:name=".data.StockProvider"
-            android:authorities="com.udacity.stockhawk"
-            android:exported="false" />
-
         <service
             android:name=".sync.QuoteJobService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <receiver android:name=".ui.StockWidget">
+        <receiver
+            android:name=".ui.StockWidgetProvider"
+            android:label="@string/title_widget_stocks">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.udacity.stockhawk.ACTION_DATA_UPDATED" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/stock_widget_info" />
         </receiver>
+
+        <service
+            android:name=".ui.StockWidgetIntentService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <provider
+            android:name=".data.StockProvider"
+            android:authorities="com.udacity.stockhawk"
+            android:exported="false" />
     </application>
 
 </manifest>

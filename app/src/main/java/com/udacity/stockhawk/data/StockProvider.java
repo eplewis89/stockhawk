@@ -118,6 +118,7 @@ public class StockProvider extends ContentProvider {
         if (null == selection) {
             selection = "1";
         }
+
         switch (uriMatcher.match(uri)) {
             case QUOTE:
                 rowsDeleted = db.delete(
@@ -157,7 +158,6 @@ public class StockProvider extends ContentProvider {
 
     @Override
     public int bulkInsert(@NonNull Uri uri, @NonNull ContentValues[] values) {
-
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         switch (uriMatcher.match(uri)) {
@@ -186,7 +186,5 @@ public class StockProvider extends ContentProvider {
             default:
                 return super.bulkInsert(uri, values);
         }
-
-
     }
 }
